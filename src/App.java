@@ -6,13 +6,14 @@ public class App {
     public static void main(String[] args) throws Exception {
         //static no se necesita instanciar el metodo
         //los metodos no estaticos para ejecutarse deben de estar en una clase intanciada
-        int size = 200000;
+        int size = 100000;
         int[] arreglo = generate(size);
 
         // agregar metodo shell
 
         int[] arreglo2 = arreglo.clone();
         int[] arreglo3 = arreglo.clone();
+        int[] arreglo4 = arreglo.clone();
 
         SortMethods metodos = new SortMethods();
 
@@ -36,6 +37,15 @@ public class App {
     Results rBubbleAvnz = BerchMarking.medirTiempo(funcionBubbleAvnz,"burbuja avanzado",size);
     
     System.out.println(rBubbleAvnz.getName() + " = " + rBubbleAvnz.getTime());
+
+    Callable<Void> funcionShellSort = () -> {
+        metodos.shellSort(arreglo4);
+        return null;
+    };    
+
+    Results rShell = BerchMarking.medirTiempo(funcionShellSort,"Shell",size);
+
+    System.out.println(rShell.getName() + " = " + rShell.getTime());
 
 
     }
